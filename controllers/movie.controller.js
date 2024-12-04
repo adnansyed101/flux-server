@@ -60,3 +60,20 @@ export const updateMovie = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+export const deleteMovie = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Invalid Movie Id" });
+  }
+
+  try {
+    await Movie.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "Movie Deleted" });
+  } catch (err) {
+    console.error("Error in Deleting movies" + err.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
