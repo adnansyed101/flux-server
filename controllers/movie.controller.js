@@ -27,3 +27,13 @@ export const createMovie = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+export const getMovies = async (req, res) => {
+  try {
+    const movies = await Movie.find({});
+    res.status(200).json({ success: true, data: movies });
+  } catch (err) {
+    console.error("Error in fetching movie" + err.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
