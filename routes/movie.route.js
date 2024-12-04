@@ -1,12 +1,19 @@
 import express from "express";
-import { createMovie, getMovies } from "../controllers/movie.controller.js";
+import {
+  createMovie,
+  getMovies,
+  updateMovie,
+} from "../controllers/movie.controller.js";
 
 const router = express.Router();
 
-// Get All Products
+// Get All Movies
 router.get("/", getMovies);
 
-// Create new product
+// Create new Movie
 router.post("/", createMovie);
+
+// Update A Movie
+router.put("/:id", updateMovie);
 
 export default router;
