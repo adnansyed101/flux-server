@@ -1,6 +1,7 @@
 import Movie from "../models/movie.model.js";
 import mongoose from "mongoose";
 
+
 export const createMovie = async (req, res) => {
   const movie = req.body;
 
@@ -54,12 +55,12 @@ export const updateMovie = async (req, res) => {
       new: true,
     });
 
-
     res.status(200).json({ success: true, data: updatedMovie });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
 export const deleteMovie = async (req, res) => {
   const { id } = req.params;
 
@@ -74,6 +75,16 @@ export const deleteMovie = async (req, res) => {
     res.status(200).json({ success: true, message: "Movie Deleted" });
   } catch (err) {
     console.error("Error in Deleting movies" + err.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const getFeaturedMovies = async (req, res) => {
+  try {
+    const movies = await Movie.find({}).sort({ rating: -1 }).limit(6);
+    res.status(200).json({ success: true, data: movies });
+  } catch (err) {
+    console.error("Error in fetching movie" + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
