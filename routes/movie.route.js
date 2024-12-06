@@ -4,6 +4,7 @@ import {
   deleteMovie,
   getFeaturedMovies,
   getMovies,
+  getSingleMovive,
   updateMovie,
 } from "../controllers/movie.controller.js";
 
@@ -23,5 +24,8 @@ router.delete("/:id", deleteMovie);
 
 // Get featured movies
 router.get("/featured", getFeaturedMovies);
+
+// get single Movie
+router.get("/:id", getSingleMovive);
 
 export default router;
