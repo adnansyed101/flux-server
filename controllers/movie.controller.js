@@ -28,7 +28,8 @@ export const createMovie = async (req, res) => {
     !movie.duration ||
     !movie.year ||
     !movie.rating ||
-    !movie.summary
+    !movie.summary ||
+    !movie.email
   ) {
     return res
       .status(400)
