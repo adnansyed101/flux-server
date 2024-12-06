@@ -1,6 +1,22 @@
 import Movie from "../models/movie.model.js";
 import mongoose from "mongoose";
 
+export const getSingleMovive = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Invalid Movie Id" });
+  }
+
+  try {
+    const movie = await Movie.findById(id);
+    res.status(200).json({ success: true, data: movie });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
 
 export const createMovie = async (req, res) => {
   const movie = req.body;
