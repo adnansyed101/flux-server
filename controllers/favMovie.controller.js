@@ -1,15 +1,24 @@
 import FavMovie from "../models/favMovie.model.js";
 
 export const addMovieToFav = async (req, res) => {
-  const movie = req.body;
+  const favMovie = req.body;
 
-  if (!movie) {
+  if (
+    !favMovie.imgLink ||
+    !favMovie.title ||
+    !favMovie.genre ||
+    !favMovie.duration ||
+    !favMovie.year ||
+    !favMovie.rating ||
+    !favMovie.summary ||
+    !favMovie.email
+  ) {
     return res
       .status(400)
       .json({ success: false, message: "Please provide all fields" });
   }
 
-  const newFavMovie = new FavMovie(movie);
+  const newFavMovie = new FavMovie(favMovie);
 
   try {
     await newFavMovie.save();
@@ -19,3 +28,5 @@ export const addMovieToFav = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+
