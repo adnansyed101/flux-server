@@ -29,4 +29,14 @@ export const addMovieToFav = async (req, res) => {
   }
 };
 
+export const getAllFavMovie = async (req, res) => {
+  const email = req.params.email;
+  try {
+    const favMovies = await FavMovie.find({}).where("email").equals(email);
 
+    res.status(201).json(favMovies);
+  } catch (err) {
+    console.error("Error in creating movie: " + err.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
