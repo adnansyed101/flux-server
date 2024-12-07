@@ -1,7 +1,13 @@
 import express from "express";
-import { addMovieToFav } from "../controllers/favMovie.controller.js";
+import {
+  addMovieToFav,
+  getAllFavMovie,
+} from "../controllers/favMovie.controller.js";
 
 const router = express.Router();
+
+// Get All Favourite Movies
+router.get("/:email", getAllFavMovie);
 
 // Create new Favourite Movie
 router.post("/", addMovieToFav);
