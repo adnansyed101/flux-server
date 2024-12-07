@@ -29,11 +29,7 @@ const movieSchema = new mongoose.Schema(
     summary: {
       type: String,
       required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
+    }
   },
   {
     timestamps: true,
