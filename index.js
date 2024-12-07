@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use("/api/movies", movieRoutes);
 app.use("/api/movies/favourites", favMovieRoutes);
+app.use("/api/movies", movieRoutes);
 
 app.listen(5000, () => {
   connectDB();
