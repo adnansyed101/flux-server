@@ -48,12 +48,26 @@ export const createMovie = async (req, res) => {
 
 export const getMovies = async (req, res) => {
   const { search } = req.query;
+  const { sort } = req.query;
+
+  console.log('');
+  
+
   let option = {};
-  if (search) {
-    option = { title: { $regex: search, $options: "i" } };
+
+  if (sort) {
+    option = { sort: { rating: sort === "asc" ? 1 : -1 } };
   }
+
+  let query = {
+    title: {
+      $regex: search,
+      $options: "i",
+    },
+  };
+
   try {
-    const movies = await Movie.find(option);
+    const movies = await Movie.find(query, null, option);
     res.status(200).json({ success: true, data: movies });
   } catch (err) {
     console.error("Error in fetching movie" + err.message);
