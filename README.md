@@ -13,3 +13,5 @@ The api is created to complete the Programming Hero assignment 10. The Api is ab
 - Show featured movies.
 - Show favourite movies of individual users.
 - Delete Favourite Movies.
+
+### [Client Link](https://github.com/adnansyed101/flux-client)
