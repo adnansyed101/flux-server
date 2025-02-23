@@ -12,7 +12,7 @@ export const getSingleMovive = async (req, res) => {
 
   try {
     const movie = await Movie.findById(id);
-    res.status(200).json({ success: true, data: movie });
+    res.status(200).json(movie);
   } catch (err) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
@@ -39,7 +39,7 @@ export const createMovie = async (req, res) => {
 
   try {
     await newMovie.save();
-    res.status(201).json({ success: true, data: newMovie });
+    res.status(201).json(movie);
   } catch (err) {
     console.error("Error in creating movie: " + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
@@ -49,9 +49,6 @@ export const createMovie = async (req, res) => {
 export const getMovies = async (req, res) => {
   const { search } = req.query;
   const { sort } = req.query;
-
-  console.log('');
-  
 
   let option = {};
 
@@ -68,7 +65,7 @@ export const getMovies = async (req, res) => {
 
   try {
     const movies = await Movie.find(query, null, option);
-    res.status(200).json({ success: true, data: movies });
+    res.status(200).json(movies);
   } catch (err) {
     console.error("Error in fetching movie" + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
@@ -90,7 +87,7 @@ export const updateMovie = async (req, res) => {
       new: true,
     });
 
-    res.status(200).json({ success: true, data: updatedMovie });
+    res.status(200).json(updatedMovie);
   } catch (err) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
@@ -117,7 +114,7 @@ export const deleteMovie = async (req, res) => {
 export const getFeaturedMovies = async (req, res) => {
   try {
     const movies = await Movie.find({}).sort({ rating: -1 }).limit(6);
-    res.status(200).json({ success: true, data: movies });
+    res.status(200).json(movies);
   } catch (err) {
     console.error("Error in fetching movie" + err.message);
     res.status(500).json({ success: false, message: "Server Error" });

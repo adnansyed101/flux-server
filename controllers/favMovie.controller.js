@@ -23,7 +23,7 @@ export const addMovieToFav = async (req, res) => {
 
   try {
     await newFavMovie.save();
-    res.status(201).json({ success: true, data: newFavMovie });
+    res.status(201).json(newFavMovie);
   } catch (err) {
     console.error("Error in creating movie: " + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
