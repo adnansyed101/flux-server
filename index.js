@@ -18,8 +18,8 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("Hello From Movies");
 });
-app.use("/api/movies/favourites", favMovieRoutes);
-app.use("/api/movies", movieRoutes);
+app.use("/favourites", favMovieRoutes);
+app.use("/movies", movieRoutes);
 
 app.listen(PORT, () => {
   console.log("Server runnigng at port " + PORT);
