@@ -1,44 +1,15 @@
 import mongoose from "mongoose";
 
-const favMovieSchema = new mongoose.Schema(
-  {
-    imgLink: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    genre: {
-      type: String,
-      required: true,
-    },
-    duration: {
-      type: Number,
-      required: true,
-    },
-    year: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    summary: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
+const favMovieSchema = new mongoose.Schema({
+  movie: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Movie",
   },
-  {
-    timestamps: true,
-  }
-);
+  uid: {
+    type: String,
+    required: true,
+  },
+});
 
 const FavMovie = mongoose.model("FavMovie", favMovieSchema);
 
