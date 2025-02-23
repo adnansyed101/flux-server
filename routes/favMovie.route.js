@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 // Get All Favourite Movies
-router.get("/:email", getAllFavMovie);
+router.get("/:uid", getAllFavMovie);
 
 // Get All Favourite Movies
 router.delete("/:email/:id", deleteFavMovie);

@@ -22,10 +22,10 @@ export const addMovieToFav = async (req, res) => {
 };
 
 export const getAllFavMovie = async (req, res) => {
-  const email = req.params.email;
-  try {
-    const favMovies = await FavMovie.find({}).where("email").equals(email);
+  const uid = req.params.uid;
 
+  try {
+    const favMovies = await FavMovie.find({ uid: uid }).populate("movie");
     res.status(201).json(favMovies);
   } catch (err) {
     console.error("Error in getting all favourite movie: " + err.message);
