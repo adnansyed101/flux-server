@@ -4,16 +4,7 @@ import FavMovie from "../models/favMovie.model.js";
 export const addMovieToFav = async (req, res) => {
   const favMovie = req.body;
 
-  if (
-    !favMovie.imgLink ||
-    !favMovie.title ||
-    !favMovie.genre ||
-    !favMovie.duration ||
-    !favMovie.year ||
-    !favMovie.rating ||
-    !favMovie.summary ||
-    !favMovie.email
-  ) {
+  if (!favMovie.uid || !favMovie.movie) {
     return res
       .status(400)
       .json({ success: false, message: "Please provide all fields" });
@@ -25,7 +16,7 @@ export const addMovieToFav = async (req, res) => {
     await newFavMovie.save();
     res.status(201).json(newFavMovie);
   } catch (err) {
-    console.error("Error in creating movie: " + err.message);
+    console.error("Error in creating favorite movie: " + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
@@ -37,7 +28,7 @@ export const getAllFavMovie = async (req, res) => {
 
     res.status(201).json(favMovies);
   } catch (err) {
-    console.error("Error in creating movie: " + err.message);
+    console.error("Error in getting all favourite movie: " + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
@@ -55,7 +46,7 @@ export const deleteFavMovie = async (req, res) => {
     await FavMovie.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Movie Deleted" });
   } catch (err) {
-    console.error("Error in Deleting movies" + err.message);
+    console.error("Error in deleting fav movie" + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
