@@ -89,7 +89,7 @@ export const getUserMovies = async (req, res) => {
     const movies = await Movie.find(query).sort({ createdAt: "desc" });
     res.status(200).json(movies);
   } catch (err) {
-    console.error("Error in Deleting movies" + err.message);
+    console.error("Error in Fetching User Movies" + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
