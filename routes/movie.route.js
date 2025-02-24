@@ -5,6 +5,7 @@ import {
   getFeaturedMovies,
   getMovies,
   getSingleMovive,
+  getUserMovies,
   updateMovie,
 } from "../controllers/movie.controller.js";
 
@@ -15,6 +16,9 @@ router.get("/", getMovies);
 
 // Create new Movie
 router.post("/", createMovie);
+
+// Get User Movie
+router.get("/:uid", getUserMovies);
 
 // Update A Movie
 router.put("/:id", updateMovie);
