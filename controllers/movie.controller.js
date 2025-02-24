@@ -22,6 +22,7 @@ export const createMovie = async (req, res) => {
   const movie = req.body;
 
   if (
+    !movie.uid ||
     !movie.imgLink ||
     !movie.title ||
     !movie.genre ||
