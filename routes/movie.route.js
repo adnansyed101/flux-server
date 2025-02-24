@@ -14,6 +14,9 @@ const router = express.Router();
 // Get All Movies
 router.get("/", getMovies);
 
+// get single Movie
+router.get("/movie/:id", getSingleMovive);
+
 // Create new Movie
 router.post("/", createMovie);
 
@@ -28,8 +31,5 @@ router.delete("/:id", deleteMovie);
 
 // Get featured movies
 router.get("/featured", getFeaturedMovies);
-
-// get single Movie
-router.get("/:id", getSingleMovive);
 
 export default router;
