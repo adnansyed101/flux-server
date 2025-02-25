@@ -10,11 +10,19 @@ export const addMovieToFav = async (req, res) => {
       .json({ success: false, message: "Please provide all fields" });
   }
 
+  const isExist = await FavMovie.findOne({
+    $and: [{ movie: favMovie.movie }, { uid: favMovie.uid }],
+  });
+
+  if (isExist) {
+    return res.status(202).json({ message: "Movie already added." });
+  }
+
   const newFavMovie = new FavMovie(favMovie);
 
   try {
     await newFavMovie.save();
-    res.status(201).json(newFavMovie);
+    res.status(201).json({ message: "Movie added to favourite." });
   } catch (err) {
     console.error("Error in creating favorite movie: " + err.message);
     res.status(500).json({ success: false, message: "Server Error" });
