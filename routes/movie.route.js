@@ -20,6 +20,9 @@ router.get("/movie/:id", getSingleMovive);
 // Create new Movie
 router.post("/", createMovie);
 
+// Get featured movies
+router.get("/featured", getFeaturedMovies);
+
 // Get User Movie
 router.get("/:uid", getUserMovies);
 
@@ -28,8 +31,5 @@ router.put("/:id", updateMovie);
 
 // Delete a movie
 router.delete("/:id", deleteMovie);
-
-// Get featured movies
-router.get("/featured", getFeaturedMovies);
 
 export default router;
