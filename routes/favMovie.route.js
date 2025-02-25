@@ -10,8 +10,8 @@ const router = express.Router();
 // Get All Favourite Movies
 router.get("/:uid", getAllFavMovie);
 
-// Get All Favourite Movies
-router.delete("/:email/:id", deleteFavMovie);
+// Delete Favourite Movies
+router.delete("/:id", deleteFavMovie);
 
 // Create new Favourite Movie
 router.post("/", addMovieToFav);
